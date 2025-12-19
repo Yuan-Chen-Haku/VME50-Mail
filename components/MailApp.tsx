@@ -5,7 +5,11 @@ import { EmailDetail } from './EmailDetail';
 import { mockEmails } from '../data';
 import { Folder, Email } from '../types';
 
-export const MailApp: React.FC = () => {
+interface MailAppProps {
+  onReturnHome: () => void;
+}
+
+export const MailApp: React.FC<MailAppProps> = ({ onReturnHome }) => {
   const [currentFolder, setCurrentFolder] = useState<Folder>('inbox');
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(mockEmails[0].id);
   
@@ -16,6 +20,7 @@ export const MailApp: React.FC = () => {
       <Sidebar 
         currentFolder={currentFolder} 
         onNavigate={setCurrentFolder} 
+        onReturnHome={onReturnHome}
       />
       
       <main className="flex flex-1 overflow-hidden">

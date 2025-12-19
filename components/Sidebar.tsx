@@ -10,16 +10,18 @@ import {
   Hash,
   Settings,
   MoreHorizontal,
-  Zap
+  Zap,
+  LogOut
 } from 'lucide-react';
 import { Folder } from '../types';
 
 interface SidebarProps {
   currentFolder: Folder;
   onNavigate: (folder: Folder) => void;
+  onReturnHome: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ currentFolder, onNavigate }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ currentFolder, onNavigate, onReturnHome }) => {
   const navItems = [
     { id: 'inbox', label: 'Inbox', icon: Inbox, count: 4 },
     { id: 'sent', label: 'Sent', icon: Send },
@@ -108,7 +110,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentFolder, onNavigate }) =
       </div>
 
       {/* Bottom Actions */}
-      <div className="p-3 border-t border-gray-200">
+      <div className="p-3 border-t border-gray-200 space-y-1">
+         <button onClick={onReturnHome} className="flex items-center space-x-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 w-full p-2 rounded-md transition-colors">
+            <LogOut size={16} />
+            <span>Back to Home</span>
+         </button>
          <button className="flex items-center space-x-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 w-full p-2 rounded-md transition-colors">
             <Settings size={16} />
             <span>Settings</span>

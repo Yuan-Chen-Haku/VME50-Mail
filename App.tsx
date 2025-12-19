@@ -6,7 +6,7 @@ const App: React.FC = () => {
   const [hasEnteredApp, setHasEnteredApp] = useState(false);
 
   if (hasEnteredApp) {
-    return <MailApp />;
+    return <MailApp onReturnHome={() => setHasEnteredApp(false)} />;
   }
 
   return <LandingPage onEnter={() => setHasEnteredApp(true)} />;
